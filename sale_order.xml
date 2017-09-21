@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!--sales order form view -->
+		<record id="x_view_sales_order_form" model="ir.ui.view">
+			<field name="name">sale.order.form.inherit</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="/form/sheet/notebook/page[2]/group/group/field[@name='client_order_ref']" position="replace">
+				</xpath>
+				<xpath expr="/form/sheet/group/group[2]/field[@name='payment_term_id']" position="after">
+					<field name="client_order_ref" attrs="{'readonly': [('state', 'in', ('sale','done', 'cancel'))]}" />
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>
